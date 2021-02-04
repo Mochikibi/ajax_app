@@ -9,7 +9,18 @@ class PostsController < ApplicationController
       redirect_to action: :index
     end
   
-  
+    def checked
+      post = Post.find(params[:id])
+      if post.checked
+        post.update(checked: false)
+      else
+        post.update(checked: true)
+      end
+
+      item = Post.find(params[id])　#更新したレコードを取得し直す　#postで記述は、変更前にも記述しているので使用できない。
+      render json: { post: item }   #json形式（データ）としてchecked.jsに返却
+      
+    end
 
   
 end
